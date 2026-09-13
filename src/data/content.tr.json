@@ -1,0 +1,12 @@
+{
+  "site": {
+    "name": "Your Name",
+    "role": "AI Engineer",
+    "bio": "Buraya kendinizi kısa bir tanıtım yazısı ekleyin.",
+    "profileImage": "/images/profile.png",
+    "contact": { "email": "", "linkedin": "", "github": "" },
+    "cvFile": "/cv.pdf",
+    "analytics": { "provider": "umami", "src": "", "websiteId": "" }
+  },
+  "projects": []
+}
