@@ -1,0 +1,48 @@
+---
+import { CATEGORIES } from '../lib/categories';
+import { getCategoryLabel, getUI } from '../i18n/ui';
+import type { Lang } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ui = getUI(lang);
+const base = 'rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium transition hover:border-slate-500';
+---
+<div class="flex flex-wrap gap-2" data-category-filter>
+  <button type="button" data-category="all" class={base}>{ui.projects.all}</button>
+  {CATEGORIES.map((c) => (
+    <button type="button" data-category={c} class={base}>{getCategoryLabel(lang, c)}</button>
+  ))}
+</div>
+<script>
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category-filter] [data-category]'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-project]'));
+
+  function apply(category: string) {
+    for (const b of buttons) {
+      const active = b.dataset.category === category;
+      b.classList.toggle('bg-slate-900', active);
+      b.classList.toggle('text-white', active);
+      b.classList.toggle('border-slate-900', active);
+    }
+    for (const card of cards) {
+      card.style.display = category === 'all' || card.dataset.category === category ? '' : 'none';
+    }
+  }
+
+  for (const b of buttons) {
+    b.addEventListener('click', () => {
+      const category = b.dataset.category ?? 'all';
+      const url = new URL(window.location.href);
+      if (category === 'all') url.searchParams.delete('category');
+      else url.searchParams.set('category', category);
+      history.replaceState(null, '', url);
+      apply(category);
+    });
+  }
+
+  apply(new URLSearchParams(window.location.search).get('category') ?? 'all');
+</script>

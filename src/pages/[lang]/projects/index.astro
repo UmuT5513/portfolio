@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CategoryFilter from '../../../components/CategoryFilter.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { LANGS } from '../../../i18n/locale';
+import { getUI } from '../../../i18n/ui';
+import { loadData, mergeProjects } from '../../../lib/loadData';
+import type { Lang } from '../../../lib/data';
+
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+
+const { lang } = Astro.params as { lang: Lang };
+const data = loadData();
+const content = data[lang];
+const ui = getUI(lang);
+const projects = mergeProjects(content, data.projects);
+---
+<BaseLayout lang={lang} title={ui.projects.title} description={ui.projects.title}>
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <h1 class="text-3xl">{ui.projects.title}</h1>
+    <div class="mt-6">
+      <CategoryFilter lang={lang} />
+    </div>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2">
+      {projects.map((p) => <ProjectCard project={p} lang={lang} />)}
+    </div>
+  </section>
+</BaseLayout>
