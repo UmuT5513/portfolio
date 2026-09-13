@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-white text-slate-800 font-sans;
+  }
+  h1, h2, h3 {
+    @apply text-slate-900 font-semibold;
+  }
+  a {
+    @apply text-slate-700 underline-offset-2 hover:text-slate-900;
+  }
+}
