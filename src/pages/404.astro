@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+import { getUI } from '../i18n/ui';
+import { loadData } from '../lib/loadData';
+import { LANGS } from '../i18n/locale';
+import type { Lang } from '../lib/data';
+
+const siteName = loadData().en.site.name;
+---
+<html lang="en">
+  <head>
+    <SEOHead lang="en" title="404" siteName={siteName} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center">
+    <h1 class="text-6xl">404</h1>
+    <p class="text-slate-600">{getUI('en' as Lang).notFound.message}</p>
+    <div class="flex gap-3">
+      {LANGS.map((lang) => (
+        <a href={`/${lang}/`} class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">
+          {getUI(lang).notFound.backHome} ({lang.toUpperCase()})
+        </a>
+      ))}
+    </div>
+  </body>
+</html>

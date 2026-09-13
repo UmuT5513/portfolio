@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import { LANGS } from '../../i18n/locale';
+import { getUI } from '../../i18n/ui';
+import { loadData } from '../../lib/loadData';
+import type { Lang } from '../../lib/data';
+
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+
+const { lang } = Astro.params as { lang: Lang };
+const ui = getUI(lang);
+const { site } = loadData()[lang];
+const contactItems = [
+  { label: 'Email', href: site.contact.email ? `mailto:${site.contact.email}` : '' },
+  { label: 'GitHub', href: site.contact.github ?? '' },
+  { label: 'LinkedIn', href: site.contact.linkedin ?? '' },
+].filter((c) => c.href !== '');
+---
+<BaseLayout lang={lang} title={`${ui.about.title} — ${site.name}`} description={site.bio}>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <div class="flex flex-col items-center gap-6 sm:flex-row">
+      <div class="h-32 w-32 shrink-0 overflow-hidden rounded-full bg-slate-100">
+        <Image src={site.profileImage} alt={site.name} width={256} height={256} class="h-full w-full object-cover" />
+      </div>
+      <div class="text-center sm:text-left">
+        <h1 class="text-3xl">{ui.about.title}</h1>
+        <p class="mt-2 font-medium text-slate-500">{site.role}</p>
+      </div>
+    </div>
+
+    <div class="mt-8 whitespace-pre-line text-slate-700">{site.bio}</div>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href={site.cvFile} download class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700">
+        {ui.about.downloadCV}
+      </a>
+      {contactItems.map((c) => (
+        <a href={c.href} rel="me" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">
+          {c.label}
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
