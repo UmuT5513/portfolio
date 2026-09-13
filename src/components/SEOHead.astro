@@ -1,0 +1,32 @@
+---
+import { LANGS, switchLocale } from '../i18n/locale';
+import type { Lang } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  ogImage?: string;
+  siteName: string;
+}
+
+const { lang, title, description, ogImage, siteName } = Astro.props;
+const path = Astro.url.pathname;
+const alternates = LANGS.map((l) => ({
+  lang: l,
+  href: switchLocale(path, '', lang, l),
+}));
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:locale" content={lang === 'en' ? 'en_US' : 'tr_TR'} />
+<meta property="og:locale:alternate" content={lang === 'en' ? 'tr_TR' : 'en_US'} />
+<meta name="twitter:card" content="summary_large_image" />
+{alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}

@@ -1,0 +1,7 @@
+---
+import { loadData } from '../lib/loadData';
+
+const analytics = loadData().en.site.analytics;
+const enabled = Boolean(analytics?.src && analytics?.websiteId);
+---
+{enabled && <script is:inline async defer src={analytics.src} data-website-id={analytics.websiteId}></script>}

@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import SEOHead from '../components/SEOHead.astro';
+import { loadData } from '../lib/loadData';
+import type { Lang } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { lang, title, description, ogImage } = Astro.props;
+const data = loadData();
+const site = data[lang].site;
+---
+<html lang={lang}>
+  <head>
+    <SEOHead {lang} {title} description={description} ogImage={ogImage ?? site.profileImage} siteName={site.name} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Analytics />
+  </body>
+</html>
