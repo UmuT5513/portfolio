@@ -1,0 +1,24 @@
+---
+import { getUI } from '../i18n/ui';
+import { loadData } from '../lib/loadData';
+import type { Lang } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ui = getUI(lang);
+const { contact, name } = loadData()[lang].site;
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-slate-200">
+  <div class="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-6 text-sm sm:flex-row sm:justify-between">
+    <p>&copy; {year} {name}. {ui.footer.rights}</p>
+    <ul class="flex items-center gap-4">
+      {contact.email && <li><a href={`mailto:${contact.email}`}>Email</a></li>}
+      {contact.github && <li><a href={contact.github} rel="me">GitHub</a></li>}
+      {contact.linkedin && <li><a href={contact.linkedin} rel="me">LinkedIn</a></li>}
+    </ul>
+  </div>
+</footer>

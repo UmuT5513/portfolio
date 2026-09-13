@@ -1,0 +1,41 @@
+---
+import { getUI } from '../i18n/ui';
+import { switchLocale } from '../i18n/locale';
+import type { Lang } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ui = getUI(lang);
+const path = Astro.url.pathname;
+const search = Astro.url.search;
+const otherLang: Lang = lang === 'en' ? 'tr' : 'en';
+const nav = [
+  { href: `/${lang}/`, label: ui.nav.home },
+  { href: `/${lang}/projects/`, label: ui.nav.projects },
+  { href: `/${lang}/about/`, label: ui.nav.about },
+];
+---
+<header class="border-b border-slate-200">
+  <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
+    <a href={`/${lang}/`} class="font-semibold text-slate-900">{getUI(lang).nav.home}</a>
+    <nav>
+      <ul class="flex items-center gap-6">
+        {nav.map((item) => (
+          <li><a href={item.href} class="text-sm hover:text-slate-900">{item.label}</a></li>
+        ))}
+        <li>
+          <a
+            href={switchLocale(path, search, lang, otherLang)}
+            class="rounded-full border border-slate-300 px-3 py-1 text-sm font-medium hover:border-slate-500"
+            hreflang={otherLang}
+          >
+            {otherLang.toUpperCase()}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
