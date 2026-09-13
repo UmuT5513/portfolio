@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
+import { LANGS } from '../../i18n/locale';
+import { getUI } from '../../i18n/ui';
+import { loadData, mergeProjects } from '../../lib/loadData';
+import type { Lang } from '../../lib/data';
+
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+
+const { lang } = Astro.params as { lang: Lang };
+const data = loadData();
+const content = data[lang];
+const ui = getUI(lang);
+const featured = mergeProjects(content, data.projects).filter((p) => p.featured);
+const hasContact = Boolean(content.site.contact.email || content.site.contact.linkedin || content.site.contact.github);
+---
+<BaseLayout lang={lang} title={`${content.site.name} — ${content.site.role}`} description={content.site.bio}>
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <div class="flex flex-col items-center gap-8 sm:flex-row">
+      <div class="h-32 w-32 shrink-0 overflow-hidden rounded-full bg-slate-100">
+        <Image src={content.site.profileImage} alt={content.site.name} width={256} height={256} class="h-full w-full object-cover" />
+      </div>
+      <div class="text-center sm:text-left">
+        <h1 class="text-3xl">{content.site.name}</h1>
+        <p class="mt-1 font-medium text-slate-500">{content.site.role}</p>
+        <p class="mt-4 text-slate-600">{content.site.bio}</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3 sm:justify-start">
+          <a href={`/${lang}/projects/`} class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700">
+            {ui.home.viewProjects}
+          </a>
+          {hasContact && <a href={`/${lang}/about/`} class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">
+            {ui.home.moreAbout}
+          </a>}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {featured.length > 0 && (
+    <section class="mx-auto max-w-4xl px-4 pb-16">
+      <h2 class="text-2xl">{ui.home.featuredTitle}</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {featured.map((p) => <ProjectCard project={p} lang={lang} />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

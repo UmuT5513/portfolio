@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import { getCategoryLabel } from '../i18n/ui';
+import type { Lang, LocalizedProject } from '../lib/data';
+
+interface Props {
+  project: LocalizedProject;
+  lang: Lang;
+}
+
+const { project, lang } = Astro.props;
+const href = `/${lang}/projects/${project.id}/`;
+---
+<a
+  href={href}
+  data-project
+  data-category={project.category}
+  class="group block overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-slate-400"
+>
+  <div class="aspect-video overflow-hidden bg-slate-100">
+    <Image src={project.image} alt={project.title} width={640} height={360} class="h-full w-full object-cover transition group-hover:scale-105" />
+  </div>
+  <div class="p-4">
+    <p class="text-xs font-medium uppercase tracking-wide text-slate-500">{getCategoryLabel(lang, project.category)}</p>
+    <h3 class="mt-1 text-lg">{project.title}</h3>
+    <p class="mt-1 text-sm text-slate-600">{project.summary}</p>
+  </div>
+</a>
