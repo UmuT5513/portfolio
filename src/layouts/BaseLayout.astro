@@ -17,10 +17,15 @@ interface Props {
 const { lang, title, description, ogImage } = Astro.props;
 const data = loadData();
 const site = data[lang].site;
+const siteUrl = site.siteUrl;
+const resolvedOgImage = ogImage ?? site.profileImage;
+const ogImageUrl = siteUrl !== '' && resolvedOgImage.startsWith('/')
+  ? siteUrl + resolvedOgImage
+  : resolvedOgImage;
 ---
 <html lang={lang}>
   <head>
-    <SEOHead {lang} {title} description={description} ogImage={ogImage ?? site.profileImage} siteName={site.name} />
+    <SEOHead {lang} {title} description={description} ogImage={ogImageUrl} siteName={site.name} siteUrl={siteUrl} />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body class="min-h-screen flex flex-col">

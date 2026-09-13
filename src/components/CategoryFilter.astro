@@ -20,6 +20,7 @@ const base = 'rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medi
 <script>
   const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category-filter] [data-category]'));
   const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-project]'));
+  const validCategories = buttons.filter((b) => b.dataset.category !== 'all').map((b) => b.dataset.category);
 
   function apply(category: string) {
     for (const b of buttons) {
@@ -44,5 +45,7 @@ const base = 'rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medi
     });
   }
 
-  apply(new URLSearchParams(window.location.search).get('category') ?? 'all');
+  const requested = new URLSearchParams(window.location.search).get('category');
+  const category = requested !== null && validCategories.includes(requested) ? requested : 'all';
+  apply(category);
 </script>

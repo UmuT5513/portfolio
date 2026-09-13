@@ -8,14 +8,21 @@ interface Props {
   description?: string;
   ogImage?: string;
   siteName: string;
+  siteUrl?: string;
 }
 
-const { lang, title, description, ogImage, siteName } = Astro.props;
+const { lang, title, description, ogImage, siteName, siteUrl = '' } = Astro.props;
 const path = Astro.url.pathname;
 const alternates = LANGS.map((l) => ({
   lang: l,
   href: switchLocale(path, '', lang, l),
 }));
+const absolutize = (value: string): string =>
+  siteUrl !== '' && value.startsWith('/') ? siteUrl + value : value;
+const resolvedOgImage = ogImage ? absolutize(ogImage) : undefined;
+const resolvedAlternates = siteUrl !== ''
+  ? alternates.map((a) => ({ ...a, href: siteUrl + a.href }))
+  : alternates;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,8 +32,8 @@ const alternates = LANGS.map((l) => ({
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
-{ogImage && <meta property="og:image" content={ogImage} />}
+{resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
 <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'tr_TR'} />
 <meta property="og:locale:alternate" content={lang === 'en' ? 'tr_TR' : 'en_US'} />
 <meta name="twitter:card" content="summary_large_image" />
-{alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+{resolvedAlternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}

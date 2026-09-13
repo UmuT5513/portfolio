@@ -33,6 +33,7 @@ export interface SiteInfo {
   role: string;
   bio: string;
   profileImage: string;
+  siteUrl?: string;
   contact: Contact;
   cvFile: string;
   analytics: AnalyticsConfig;

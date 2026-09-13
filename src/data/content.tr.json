@@ -4,6 +4,7 @@
     "role": "AI Engineer",
     "bio": "Buraya kendinizi kısa bir tanıtım yazısı ekleyin.",
     "profileImage": "/images/profile.png",
+    "siteUrl": "",
     "contact": { "email": "", "linkedin": "", "github": "" },
     "cvFile": "/cv.pdf",
     "analytics": { "provider": "umami", "src": "", "websiteId": "" }
