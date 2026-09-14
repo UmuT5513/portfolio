@@ -44,8 +44,8 @@ GitHub OpenGraph cover for public repos, and leaves the placeholder otherwise.
 ## Deploy
 
 ```bash
-docker compose up -d --build   # serves on host port 8090
+docker compose up -d --build   # serves on host port 8083
 ```
 
-Point the host nginx reverse proxy for a subdomain/path at port `8090`. The
+Point the host nginx reverse proxy for a subdomain/path at port `8083`. The
 container itself listens on port 80.
