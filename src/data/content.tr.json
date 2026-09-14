@@ -1,13 +1,272 @@
 {
   "site": {
-    "name": "Your Name",
-    "role": "AI Engineer",
-    "bio": "Buraya kendinizi kısa bir tanıtım yazısı ekleyin.",
+    "name": "Umut Ağrıman",
+    "role": "Yapay Zeka Mühendisi",
+    "bio": "Geleneksel Makine Öğrenmesi (ML) ve Büyük Dil Modelleri (LLM) alanlarında araştırmalar yürütmektedir; üniversite not ortalaması 3,20'nin üzerindedir. Teknik (ML/DL) ve sektöre özgü (RAG, ajanlar, LLM'ler) çözümler geliştirme hedefi taşımaktadır.",
     "profileImage": "/images/profile.png",
     "siteUrl": "",
-    "contact": { "email": "", "linkedin": "", "github": "" },
-    "cvFile": "/cv.pdf",
-    "analytics": { "provider": "umami", "src": "", "websiteId": "" }
+    "contact": {
+      "email": "umutagriman0@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/umut-ağrıman",
+      "github": "https://github.com/UmuT5513",
+      "huggingface": "https://huggingface.co/umutagrmn",
+      "medium": "https://medium.com/@kazloo"
+    },
+    "cvFile": "/cv-tr.pdf",
+    "analytics": { "provider": "umami", "src": "", "websiteId": "" },
+    "skills": [
+      "LLM İnce Ayarlama (LoRA)",
+      "AI Ajanları (LangChain / LangGraph)",
+      "Makine Öğrenmesi",
+      "Veri Bilimi",
+      "TensorFlow", "PyTorch", "Pandas",
+      "ASP.NET Core MVC",
+      "VPS Yönetimi",
+      "PostgreSQL",
+      "TEKNOFEST Sağlıkta Yapay Zeka — İnme Tespiti (2025)",
+      "TEKNOFEST Sağlıkta Yapay Zeka — Missense Varyant Sınıflandırma (2026)"
+    ],
+    "experience": [
+      {
+        "id": "arnoma-media-ai-intern",
+        "company": "Arnoma Media",
+        "role": "AI Stajyeri",
+        "start": "2026-08",
+        "end": "2026-09",
+        "description": "Şirketin LLM API bağımlılığını ve maliyetlerini azaltmak amacıyla self-host bir konuşma ve dil mimarisi kurmak için araştırmalar yaptım.\n\n- TTS modelleri **vocpm2**, **XTTS v2** ve **Chatterbox TTS** değerlendirilip test edildi.\n- Otomatik konuşma tanıma (STT) için **Whisper** test edildi.\n- Harici LLM API çağrılarına maliyet açısından verimli, self-host bir alternatif üzerine araştırma yapıldı.",
+        "projectIds": ["llm-inference-calculator"]
+      }
+    ],
+    "education": [
+      {
+        "school": "Düzce Üniversitesi",
+        "degree": "Lisans",
+        "field": "Bilgisayar Mühendisliği",
+        "start": "2022-07",
+        "end": "2027-07",
+        "gpa": "3.26",
+        "current": true
+      }
+    ]
   },
-  "projects": []
+  "projects": [
+    {
+      "id": "llm-inference-calculator",
+      "title": "LLM Donanım ve Maliyet Mimarı",
+      "summary": "LLM çıkarımı ve ince ayarı için açık kaynak VRAM, hız ve maliyet hesaplayıcısı.",
+      "description": "Bir model ve donanım seçimini somut çıkarım ve ince ayar rakamlarına dönüştüren açık kaynak bir hesaplayıcı. Adım adım bir sihirbaz; model, kuantizasyon, motor, GPU ve iş yükü seçimlerini gezdirir, ardından **VRAM uyumu**, **token/sn**, **gecikme**, **aylık maliyet** ve **TCO** sonuçlarını raporlar.\n\n**Öne çıkanlar**\n\n- Yüzlerce açık kaynak LLM (DeepSeek, Llama, Qwen, Gemma, Mistral, Phi, Türkçe modeller) ve 30 GPU ön ayarı (NVIDIA, AMD MI300X, Apple Silicon).\n- Kuant/motor/GPU uyumluluk kurallarıyla 7 çıkarım motoru (vLLM, llama.cpp, TensorRT-LLM, SGLang, TGI, Ollama, MLX).\n- Kendi sunucun ile API arasındaki başabaş noktası analizi ve RunPod, Lambda, Modal'dan çekilen canlı bulut fiyatları.\n- Unsloth hızlandırmasıyla QLoRA, LoRA, tam ince ayar ve DPO/ORPO tahminleri.\n- Paylaşılabilir senaryo URL'leri, senaryo yöneticisi, TR/EN yerelleştirme ve belgelenmiş metodoloji.\n\nReact 19, Vite, Tailwind CSS v4, Express, TypeScript ve PostgreSQL ile geliştirildi.",
+      "tags": ["LLM Çıkarımı", "Maliyet Hesaplama", "VPS Yönetimi", "TypeScript", "React", "PostgreSQL"]
+    },
+    {
+      "id": "du-bm-staj-assistant-gemma4-finetuned",
+      "title": "Düzce Staj Asistanı (Gemma 4 2B, LoRA)",
+      "summary": "Düzce Üniversitesi staj SSS'lerini yanıtlayan LoRA ile ince ayarlı Gemma 4 2B modeli.",
+      "description": "Düzce Üniversitesi Bilgisayar Mühendisliği staj sürecine ilişkin soruları yanıtlayan, ince ayarlı bir Gemma 4 2B dil modeli. Amaç, temel model ile LoRA ile ince ayar uygulanmış modeli staj soruları üzerinde karşılaştırmaktı.\n\n**Öne çıkanlar**\n\n- Bölümün staj SSS'lerinden ve sentetik örneklerden 360 eğitim, 140 test soru-cevap çifti oluşturulup JSONL formatına dönüştürüldü.\n- Unsloth üzerinde LoRA (r=16, alpha=16) ile 15 GB T4 GPU'da eğitildi; 5,1B parametrenin yaklaşık 25M'i (~%0,49) eğitildi.\n- Temel model ile LoRA, exact match ve OpenAI tabanlı jüri ile değerlendirildi: LoRA 140 sorunun %85'ini kazandı (ortalama jüri puanı 81,14'e karşı 52,39).\n- Veri seti ve LoRA adaptörü Hugging Face'te yayınlandı.",
+      "tags": ["Veri Seti Hazırlama","İnce Ayar", "LoRA", "Gemma", "Unsloth", "Soru-Cevap", "NLP"]
+    },
+    {
+      "id": "selecthebesttool-agent-architecture",
+      "title": "SelectheBestTool — Araç Seçimi için Ajan Mimarisi",
+      "summary": "Kullanıcı sorgusu için filtreleme ve anlamsal puanlamayla en iyi aracı seçen ajan mimarisi.",
+      "description": "Araçlar hakkında hiçbir şey bilmeyen bir ana ajanın niyetini dinamik olarak bildirdiği ve sistemin uygun aracı bulduğu bir ajan mimarisi (basit bir özel MCP sunucusuyla). Üç temel bileşeni vardır: **Ana Ajan**, araç şemalarını JSON olarak saklayan **Araç Kayıt Defteri** ve ikisini köprüleyen **Araç Seçici**.\n\n**Öne çıkanlar**\n\n- Niyet Ayrıştırıcı; sorgudan anahtar kelimeleri, kategoriyi, eylemi ve hedefi çıkarır.\n- Yetenek Puanlayıcı; tam, kısmi, kategori, açıklama ve anlamsal eşleşmeyi (HyDE veya standart anlamsal arama) birleştirir.\n- Parametre doğrulama (tipler, enum'lar, regex) ve düşük güven için geri dönüş mekanizması.\n- `tools/` klasöründeki araçları ToolAutoLoader ile otomatik keşfeder.\n- Araç erişimi için standart anlamsal aramayı HyDE ile karşılaştırır.",
+      "tags": ["Ajanlar", "Araç Seçimi", "HyDE RAG", "ChromaDB", "OpenAI"]
+    },
+    {
+      "id": "missense-classification",
+      "title": "Missense Varyant Sınıflandırması",
+      "summary": "Missense SNV'leri patojenik veya benign olarak sınıflandıran, TEKNOFEST 2026 için ML hattı.",
+      "description": "Kalıtsal hastalık genleri (PAH, CFTR ve bir kalıtsal kanser gen paneli) için missense tek nükleotid varyantlarını (SNV) **patojenik** veya **benign** olarak sınıflandıran bir makine öğrenmesi hattı. TEKNOFEST 2026 Sağlıkta Yapay Zeka yarışması için geliştirildi.\n\n**Öne çıkanlar**\n\n- ClinVar gerçek etiketleri, Ensembl VEP ve dbNSFP in-silico risk skorları (SIFT, PolyPhen, CADD, REVEL), GRCh38 dizi bağlamı ve UniProt amino asit bağlamını birleştirir.\n- Veri edinimi, ön işleme, özellik çıkarımı ve model eğitimini kapsayan uçtan uca Jupyter hattı.\n- Tekrarlanabilirlik için belgelenmiş özellik mantığı ve veri işleme kuralları.",
+      "tags": ["Biyoinformatik", "Makine Öğrenmesi", "TEKNOFEST", "ClinVar", "VEP", "Python"]
+    },
+    {
+      "id": "yt-summarizer-and-qa-assistant-langchain",
+      "title": "YouTube Video Soru-Cevap Asistanı (LangChain RAG)",
+      "summary": "YouTube videolarını özetleyen ve içerikleri hakkında soruları yanıtlayan RAG asistanı.",
+      "description": "YouTube transkriptlerini çeken, yapılandırılmış özetler üreten ve LangChain ile OpenAI kullanarak Retrieval-Augmented Generation (RAG) yöntemiyle video içeriği hakkındaki soruları yanıtlayan yapay zeka destekli bir asistan.\n\n**Öne çıkanlar**\n\n- `youtube-transcript-api` ve `yt-dlp` ile transkript çeker; video/kanal meta verilerini SQLAlchemy ile SQLite'ta saklar.\n- Transkriptleri OpenAI gömme vektörleriyle parçalayıp kalıcı ChromaDB vektör deposuna aktarır.\n- Özetleme (başlık, madde özeti, önemli çıkarımlar) ve tek video veya tüm kanal üzerinde kapsam tabanlı soru-cevap.\n- Üç arayüz: CLI, FastAPI REST API ve Streamlit web arayüzü.\n- Artımlı işleme, zaten işlenmiş videoları atlar.",
+      "tags": ["RAG", "LangChain", "ChromaDB", "FastAPI", "Streamlit", "YouTube"]
+    },
+    {
+      "id": "marketing-search-agent",
+      "title": "Pazar Araştırma Ajanı",
+      "summary": "Web'de bir pazar konusunu araştırıp yapılandırılmış PDF raporu üreten ajan.",
+      "description": "Belirli bir konuda pazar araştırmasını otonom olarak yürüten yapay zeka destekli bir ajan: web'de arama yapar, veriyi analiz eder, yapılandırılmış bir rapor yazar ve PDF olarak dışa aktarır.\n\n**İş akışı**\n\n1. **Baş Araştırmacı** — konuyu hedefli alt sorgulara böler ve Tavily ile web'de arar.\n2. **Veri Analisti** — temel metrikleri (pazar payı, büyüme, trendler) yapılandırılmış JSON'a çıkarır.\n3. **Rapor Yazarı** — Markdown biçiminde bir pazar araştırması raporu üretir.\n4. **Değerlendirici** — raporu 0-100 arası puanlar ve puan düşükse revizyon için geri döner.\n5. **PDF Dışa Aktarma** — nihai raporu biçimlendirilmiş bir PDF'e dönüştürür.",
+      "tags": ["Ajanlar", "Web Arama", "Tavily", "Rapor Üretimi", "PDF", "Python"]
+    },
+    {
+      "id": "langgraph-projects",
+      "title": "LangGraph Ajan Projeleri",
+      "summary": "Öğrenirken LangGraph ile geliştirilen ajanik yapay zeka iş akışları koleksiyonu.",
+      "description": "LangGraph öğrenirken geliştirilen ajanik yapay zeka projelerinden oluşan bir koleksiyon.\n\n**Projeler**\n\n- **AI Blog Yazma İş Akışı** — eleştirmen tatmin olana veya revizyon sınırına ulaşılana kadar dönen bir yazar/eleştirmen döngüsü.\n- **Temel Sohbet Botu** — konuşma geçmişini tutan, OpenAI ile çalışan bir sohbet döngüsü.\n- **Müşteri Hizmetleri Botu** — müşteri sorularını doğru şirket departmanına yönlendirerek doğru yanıtlar sağlar.",
+      "tags": ["LangGraph", "Ajanlar", "OpenAI", "Sohbet Botu", "Çoklu Ajan"]
+    },
+    {
+      "id": "health-assistant",
+      "title": "Sağlık Asistanı (FHIR)",
+      "summary": "FHIR verisini gömme vektörleriyle bilgi grafiğine aktaran sağlık asistanı.",
+      "description": "FHIR hasta verisini alıp sorgulanabilir bir bilgi tabanı oluşturan bir sağlık asistanı. FHIR veri alımı yardımcıları, referans çıkarımı, bir Graphiti bilgi grafiği istemcisi ve bir Hugging Face gömme (embedder) modülü içerir; 100 hastalık örnek toplu FHIR veri setiyle test edilmiştir.",
+      "tags": ["Sağlık", "FHIR", "Bilgi Grafiği", "Gömme Vektörleri", "Python"]
+    },
+    {
+      "id": "course-note-sharing-application",
+      "title": "Ders Notu Paylaşım Sistemi",
+      "summary": "Rol tabanlı yönetimle ders notlarını paylaşmaya yönelik ASP.NET Core MVC uygulaması.",
+      "description": "Öğrencilerin ders notlarını yükleyip paylaşabildiği, yöneticilerin ise kullanıcı, rol, kurs ve içerik yönetimi yapabildiği bir ASP.NET Core MVC (Razor Views) uygulaması.\n\n**Öne çıkanlar**\n\n- ASP.NET Core Identity ile kimlik doğrulama ve rol tabanlı yetkilendirme (`Admin`, `User`), lockout ve şifre sıfırlama.\n- Not yükleme, görüntüleme, düzenleme ve silme; arama, kurs filtresi ve sıralama; 50 MB dosya sınırı (`.pdf`, `.doc`, `.docx`, `.txt`, `.pptx`).\n- Not durum akışı (`Pending`, `Approved`, `Rejected`), yorumlar ve indirme takibi.\n- Kullanıcı ve admin panelleri, keşfet sayfası ve en çok indirilen notlar.\n\n.NET 10, Entity Framework Core, SQL Server ve Bootstrap ile geliştirildi.",
+      "tags": ["ASP.NET Core", "C#", "MVC", "Entity Framework", "SQL Server"]
+    },
+    {
+      "id": "java-hospital-management-system",
+      "title": "Hastane Yönetim Sistemi",
+      "summary": "Rol tabanlı panolara sahip Java Spring Boot hastane yönetim sistemi.",
+      "description": "Java, Spring Boot, Thymeleaf ve PostgreSQL ile geliştirilen; Admin, Doktor ve Resepsiyonist rolleri için ayrı panolara sahip kapsamlı bir hastane yönetim sistemi.\n\n**Öne çıkanlar**\n\n- **Admin:** kullanıcı ve personel yönetimi ile sistem raporları ve istatistikleri.\n- **Doktor:** randevular, muayene formları, laboratuvar testi talepleri ve reçeteler.\n- **Resepsiyonist:** hasta kaydı, randevu yönetimi ve faturalandırma.\n- Spring JDBC, jBCrypt şifre hash'leme, Maven ve örnek hesaplar için başlangıç verisi.",
+      "tags": ["Java", "Spring Boot", "Thymeleaf", "PostgreSQL", "Sağlık"]
+    },
+    {
+      "id": "books-and-users-api",
+      "title": "Kitaplar ve Kullanıcılar API'si",
+      "summary": "SQLite üzerinde CRUD yapan FastAPI kitap ve kullanıcı yönetimi API'si.",
+      "description": "FastAPI ile geliştirilmiş, SQLAlchemy ORM kullanarak SQLite veritabanı üzerinde CRUD işlemleri gerçekleştiren bir kitap ve kullanıcı yönetim sistemi.\n\n**Öne çıkanlar**\n\n- Kitap ekleme, listeleme, güncelleme ve arama; kullanıcı ekleme ve listeleme; kitapları kullanıcılara atama.\n- Başlık, yazar ve yıla göre gelişmiş arama.\n- Pydantic doğrulama ve otomatik Swagger/ReDoc dokümantasyonu.\n\nFastAPI, SQLAlchemy, Pydantic ve SQLite ile geliştirildi.",
+      "tags": ["FastAPI", "SQLAlchemy", "SQLite", "Pydantic", "CRUD"]
+    },
+    {
+      "id": "ce308-web-programming-aspnet-core-mvc-lecture",
+      "title": "ASP.NET Core MVC — CE308 Ders Notları",
+      "summary": "Düzce Üniversitesi CE308 için adım adım ASP.NET Core MVC ders notları ve kodu.",
+      "description": "Düzce Üniversitesi CE308 Web Programlama dersi için geliştirilen, hafta hafta ilerleyen ASP.NET Core MVC ders notları ve kodu.\n\n**Kapsam**\n\n- Controller'lar, modeller ve Razor view'ları; layout'lar ve `@section` tanımları.\n- Repository deseni ve CRUD işlemleri, ardından SQL Server ile Entity Framework Core.\n- Migration'lar, model binding, doğrulama, AutoMapper view modelleri ve özel tag helper'lar.\n\nHer hafta, ilgili git commit'lerine bağlantılıdır.",
+      "tags": ["ASP.NET Core", "C#", "MVC", "Entity Framework", "Eğitim"]
+    },
+    {
+      "id": "python-advanced",
+      "title": "İleri Python",
+      "summary": "Dekoratörlerden FastAPI ve JWT kimlik doğrulamaya 9 haftalık ileri Python yolculuğu.",
+      "description": "İleri Python özellikleri ve arka uç geliştirmenin hafta hafta, yapılandırılmış bir çalışması.\n\n**Müfredat**\n\n- **1-2. Haftalar:** sınıflar, dekoratörler, iterator/generator'lar, dataclass'lar, istisnalar, logging ve tip ipuçları.\n- **3. Hafta:** NumPy ve Pandas.\n- **4. Hafta:** web scraping projeleri.\n- **5-6. Haftalar:** Git/GitHub ve unittest ile pytest kullanarak test odaklı geliştirme.\n- **7-9. Haftalar:** FastAPI, SQLite/SQLAlchemy entegrasyonu ve JWT kimlik doğrulamayla bağımlılık enjeksiyonu.",
+      "tags": ["Python", "FastAPI", "SQLAlchemy", "JWT", "Pytest", "Web Scraping"]
+    },
+    {
+      "id": "pomodoro-timer",
+      "title": "Pomodoro Timer Türkiye",
+      "summary": "YKS öğrencileri için sınav modları ve istatistiklere sahip koyu temalı Pomodoro zamanlayıcısı.",
+      "description": "YKS öğrencileri için koyu lacivert temalı bir Pomodoro zamanlayıcısı.\n\n**Öne çıkanlar**\n\n- Özelleştirilebilir sürelerle Pomodoro ve mola modları, otomatik uzun molalar.\n- TYT (165 dk) ve AYT (180 dk) zamanlayıcılarıyla **YKS sınav modu**.\n- Günlük ve 7 günlük istatistikler, Web Audio zil sesleri, tam ekran modu ve klavye kısayolları.\n- FastAPI + SQLite API'si üzerinden isteğe bağlı, hesapsız bulut yedekleme ve içe/dışa aktarılabilir yedek kodu.\n\nReact 19, TypeScript, Vite, Tailwind CSS v4 ve Vitest ile geliştirildi.",
+      "tags": ["React", "TypeScript", "Vite", "Üretkenlik", "FastAPI"]
+    },
+    {
+      "id": "codexenergy-hackathon-starter-kit",
+      "title": "CodeXEnergy Hackathon Başlangıç Kiti",
+      "summary": "Enerji veri setleri, EDA notebook'ları, API ve dashboard şablonları içeren hackathon kiti.",
+      "description": "Düzce Üniversitesi CodeXEnergy sürdürülebilir ve temiz enerji hackathonu için hazırlanmış kapsamlı bir başlangıç kiti.\n\n**İçerik**\n\n- Dört veri seti kategorisi: enerji tüketimi, yenilenebilir enerji, karbon emisyonları/sürdürülebilir enerji ve akıllı şebeke.\n- Keşifçi veri analizi (EDA) için Jupyter notebook'ları.\n- Model veya veri sunmak için bir API şablonu ve bir Streamlit dashboard şablonu.\n\nPython, Jupyter, Streamlit ve FastAPI/Flask ile geliştirildi.",
+      "tags": ["Hackathon", "Enerji", "EDA", "Streamlit", "Jupyter"]
+    },
+    {
+      "id": "teknofest25-inme-tespiti",
+      "title": "TEKNOFEST 2025 — İnme Tespiti",
+      "summary": "DICOM tabanlı inme tespiti ve sekans analizi için TEKNOFEST 2025 projesi.",
+      "description": "Tıbbi görüntü analizine odaklanan bir TEKNOFEST 2025 projesi. Hat; DICOM sınıflandırma, sekans ayırma ve görselleştirme scriptleri ile bir eğitim scriptini içerir.\n\n**Scriptler**\n\n- `classify_dcm.py` — DICOM sınıflandırma.\n- `sekans_ayırma.py` / `sekans_plot.py` — sekans ayırma ve görselleştirme.\n- `train.py` — model eğitimi.",
+      "tags": ["Tıbbi Görüntüleme", "DICOM", "Derin Öğrenme", "TEKNOFEST", "Python"]
+    },
+    {
+      "id": "bedtime-story-teller",
+      "title": "Uyku Masalı Anlatıcısı",
+      "summary": "Google Gemini ile kişiselleştirilmiş uyku masalları üreten Flask web uygulaması.",
+      "description": "Google Generative AI (Gemini) kullanarak kişiselleştirilmiş uyku masalları üreten bir Flask web uygulaması.\n\n**Öne çıkanlar**\n\n- Bir form; karakteri, mekânı, konuyu, eğitici içeriği ve anlatım tarzını toplar.\n- Özel bir prompt oluşturup kişiye özel bir masal üretir.\n- Masallar basit bir web arayüzünde saklanır ve listelenir.\n\nFlask, Google Generative AI ve Jinja şablonları ile geliştirildi.",
+      "tags": ["Flask", "Gemini", "LLM", "Python", "Web Uygulaması"]
+    },
+    {
+      "id": "diabetes-prediction",
+      "title": "Diyabet Tahmini",
+      "summary": "Klinik veri setinden diyabet tahmini yapan keşifsel notebook.",
+      "description": "Bir klinik veri setinden (`diabetes.csv`) diyabet tahmini yapan keşifsel bir Jupyter notebook. Çalışma; veri inceleme, ön işleme ve Python veri bilimi kütüphaneleriyle sınıflandırma modellerinin eğitimi/değerlendirmesini kapsar.",
+      "tags": ["Makine Öğrenmesi", "Sağlık", "Pandas", "Scikit-learn", "Jupyter"]
+    },
+    {
+      "id": "cnn-image-classification-cats-vs-dogs",
+      "title": "CNN Görüntü Sınıflandırma — Kedi vs. Köpek",
+      "summary": "Kedi ve köpekleri sınıflandıran evrişimli sinir ağı.",
+      "description": "Kedi ve köpeklerin ikili görüntü sınıflandırması için evrişimli sinir ağı (CNN) uygulayan, veri seti hazırlığı ile model eğitimi/değerlendirmesini içeren bir Jupyter notebook.",
+      "tags": ["Derin Öğrenme", "CNN", "Bilgisayarlı Görü", "Jupyter"]
+    },
+    {
+      "id": "ann-customer-churn",
+      "title": "Müşteri Kaybı Tahmini (ANN)",
+      "summary": "Telekom müşteri kaybını tahmin eden yapay sinir ağı.",
+      "description": "Bir telekom şirketi için müşteri kaybını yapay sinir ağı (ANN) kullanarak tahmin eden, Telco Customer Churn veri seti üzerinde ön işleme, eğitim ve değerlendirme içeren bir Jupyter notebook.",
+      "tags": ["Derin Öğrenme", "ANN", "Kayıp Tahmini", "Jupyter"]
+    },
+    {
+      "id": "stroke-prediction-ann",
+      "title": "İnme Tahmini (ANN)",
+      "summary": "Sağlık verisinden inme riskini tahmin eden yapay sinir ağı.",
+      "description": "Bir sağlık veri setinden inme riskini yapay sinir ağı (ANN) kullanarak tahmin eden bir Jupyter notebook. Çalışmanın Kaggle sürümü de yayınlanmıştır.",
+      "tags": ["Derin Öğrenme", "ANN", "Sağlık", "Jupyter"]
+    },
+    {
+      "id": "cnn-image-classification-cifar10",
+      "title": "CNN Görüntü Sınıflandırma — CIFAR-10",
+      "summary": "CIFAR-10 veri seti üzerinde eğitilmiş evrişimli sinir ağı.",
+      "description": "CIFAR-10 veri seti üzerinde çok sınıflı görüntü sınıflandırması için evrişimli sinir ağı (CNN) uygulayan bir Jupyter notebook.",
+      "tags": ["Derin Öğrenme", "CNN", "Bilgisayarlı Görü", "CIFAR-10", "Jupyter"]
+    },
+    {
+      "id": "gaih-veri-analizi",
+      "title": "Global AI Hub — Mahsül Verimi Veri Analizi",
+      "summary": "Tarım mahsül verimi veri setinin EDA'sı ve ön işlemesi.",
+      "description": "Global AI Hub ve Aygaz veri analizi bootcamp'inden bir veri analizi projesi. Tarım mahsül verimi veri setinden yola çıkılarak eksik değerler oluşturulup temizlendi; işlenen veri pandas ve matplotlib ile incelenip görselleştirildi.\n\nProjeye eşlik eden bir Kaggle notebook'u vardır.",
+      "tags": ["Veri Analizi", "Pandas", "Matplotlib", "EDA", "Kaggle"]
+    },
+    {
+      "id": "kural-tabanli-musteri-siniflandirmasi-gezinomi",
+      "title": "Kural Tabanlı Müşteri Sınıflandırması — Gezinomi",
+      "summary": "Kural tabanlı müşteri segmentasyonu ve potansiyel gelir tahmini.",
+      "description": "Elle yazılmış kurallarla müşterileri segmentlere ayıran — makine öğrenmesinin basit bir biçimi — ve potansiyel müşteri kazancını tahmin eden kural tabanlı bir sınıflandırma çalışması. `SaleCityName`, `ConceptName` ve `Seasons` gibi özellikler kategorilere ayrılır.\n\nProjeye eşlik eden bir Kaggle notebook'u vardır.",
+      "tags": ["Kural Tabanlı", "Müşteri Segmentasyonu", "Pandas", "Python", "Kaggle"]
+    },
+    {
+      "id": "kural-tabanli-musteri-segmentasyonu-oyun-sirketi",
+      "title": "Kural Tabanlı Müşteri Segmentasyonu — Oyun Şirketi",
+      "summary": "Bir oyun şirketi için ML modeli kullanmadan kural tabanlı müşteri segmentasyonu.",
+      "description": "Bir oyun şirketi için kural tabanlı müşteri segmentasyonu projesi. Persona veri seti kullanılarak müşteriler elle yazılmış kurallarla segmentlere ayrılır; satışlar analiz edilir ve müşteri değeri tahmin edilir — herhangi bir makine öğrenmesi modeli eğitilmeden.",
+      "tags": ["Kural Tabanlı", "Müşteri Segmentasyonu", "Pandas", "Python"]
+    },
+    {
+      "id": "diagno-datascience",
+      "title": "Diagno Veri Bilimi Ödevleri",
+      "summary": "Düzce Üniversitesi sağlıkta yapay zeka topluluğunun veri bilimi eğitimi ödevleri.",
+      "description": "Düzce Üniversitesi Sağlıkta Yapay Zeka topluluğunun düzenlediği veri bilimi ve yapay zeka eğitiminin ödevlerinden oluşan bir koleksiyon; Python veri analizi temellerini kapsar.",
+      "tags": ["Veri Bilimi", "Eğitim", "Jupyter", "Python"]
+    },
+    {
+      "id": "python-basic-projects",
+      "title": "Python Temel Projeler",
+      "summary": "Küçük başlangıç seviyesi Python projeleri seti.",
+      "description": "FizzBuzz, mükemmel sayı kontrolü, sayı tahmin oyunu, kullanıcı giriş sistemi ve taş-kağıt-makas gibi küçük başlangıç seviyesi Python projelerinden oluşan bir koleksiyon.",
+      "tags": ["Python", "Başlangıç", "Alıştırma"]
+    },
+    {
+      "id": "python",
+      "title": "Python Hesap Makinesi",
+      "summary": "Basit bir Python hesap makinesi.",
+      "description": "Komut satırı hesap makinesi de dahil olmak üzere küçük Python scriptlerinden oluşan bir koleksiyon.",
+      "tags": ["Python", "CLI", "Hesap Makinesi"]
+    }
+  ],
+  "certificates": [
+    {
+      "id": "yds",
+      "name": "YDS (Yabancı Dil Bilgisi Seviye Tespit Sınavı)",
+      "note": "80 puan — IELTS 7.0 karşılığı kabul edilir."
+    },
+    {
+      "id": "yapay-zeka-uygulamlari-langchain-rag-llm-orkestrasyonu",
+      "name": "Yapay Zeka Uygulamaları: Langchain, RAG, LLM Orkestrasyonu",
+      "note": "Academy Club | 13 saat"
+    },
+    {
+      "id": "feature-engineering",
+      "name": "Özellik Çıkarımı Mühendisliği - Makine Öğrenimi",
+      "note": ""
+    },
+    {
+      "id": "python-for-datascience",
+      "name": "Veri Bilimi için Python",
+      "note": ""
+    }
+  ]
 }

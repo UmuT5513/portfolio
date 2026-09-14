@@ -10,6 +10,9 @@ describe('isCategory', () => {
 
   it('rejects unknown values', () => {
     expect(isCategory('random')).toBe(false);
-    expect(isCategory('llm')).toBe(false);
+  });
+
+  it('accepts the llm category', () => {
+    expect(isCategory('llm')).toBe(true);
   });
 });

@@ -2,6 +2,7 @@ export const CATEGORIES = [
   'chatbot',
   'rag',
   'agents',
+  'llm',
   'fine-tuning',
   'traditional-machine-learning',
   'other',

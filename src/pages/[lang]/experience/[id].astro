@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { marked } from 'marked';
+import { LANGS } from '../../../i18n/locale';
+import { getUI } from '../../../i18n/ui';
+import { loadData, mergeProjects } from '../../../lib/loadData';
+import type { Lang } from '../../../lib/data';
+
+export function getStaticPaths() {
+  const data = loadData();
+  return LANGS.flatMap((lang) =>
+    data[lang].site.experience.map((e) => ({ params: { lang, id: e.id } })),
+  );
+}
+
+const { lang, id } = Astro.params as { lang: Lang; id: string };
+const data = loadData();
+const content = data[lang];
+const ui = getUI(lang);
+const experience = content.site.experience.find((e) => e.id === id);
+if (!experience) throw new Error(`Experience "${id}" not found in ${lang}`);
+const descriptionHtml = await marked.parse(experience.description);
+const related = mergeProjects(content, data.projects).filter((p) => experience.projectIds.includes(p.id));
+
+const MONTHS: Record<Lang, string[]> = {
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  tr: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+};
+function formatPeriod(iso: string): string {
+  const [y, m] = iso.split('-');
+  return `${MONTHS[lang][Number(m) - 1]} ${y}`;
+}
+---
+<BaseLayout lang={lang} title={`${experience.role} — ${experience.company}`} description={experience.description}>
+  <article class="mx-auto max-w-3xl px-4 py-16">
+    <p class="text-xs font-medium uppercase tracking-wide text-slate-500">
+      {formatPeriod(experience.start)} – {formatPeriod(experience.end)}
+    </p>
+    <h1 class="mt-2 text-3xl">{experience.role}</h1>
+    <p class="mt-1 text-slate-600">{experience.company}</p>
+
+    <div class="mt-8 markdown text-slate-700">
+      <div set:html={descriptionHtml} />
+    </div>
+
+    {related.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-2xl">{ui.project.relatedProjects}</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2">
+          {related.map((p) => <ProjectCard project={p} lang={lang} />)}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>

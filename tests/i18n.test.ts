@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getUI, getCategoryLabel } from '../src/i18n/ui';
-import { LANGS, switchLocale } from '../src/i18n/locale';
+import { switchLocale } from '../src/i18n/locale';
 
 describe('getUI', () => {
   it('exposes the same key structure for both languages', () => {

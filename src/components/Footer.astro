@@ -11,14 +11,26 @@ const { lang } = Astro.props;
 const ui = getUI(lang);
 const { contact, name } = loadData()[lang].site;
 const year = new Date().getFullYear();
+const items = [
+  { label: 'Email', href: contact.email ? `mailto:${contact.email}` : '' },
+  { label: 'GitHub', href: contact.github ?? '' },
+  { label: 'LinkedIn', href: contact.linkedin ?? '' },
+  { label: 'Hugging Face', href: contact.huggingface ?? '' },
+  { label: 'Medium', href: contact.medium ?? '' },
+].filter((c) => c.href !== '');
+const external = (href: string): boolean => href.startsWith('http');
 ---
 <footer class="border-t border-slate-200">
   <div class="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-6 text-sm sm:flex-row sm:justify-between">
     <p>&copy; {year} {name}. {ui.footer.rights}</p>
-    <ul class="flex items-center gap-4">
-      {contact.email && <li><a href={`mailto:${contact.email}`}>Email</a></li>}
-      {contact.github && <li><a href={contact.github} rel="me">GitHub</a></li>}
-      {contact.linkedin && <li><a href={contact.linkedin} rel="me">LinkedIn</a></li>}
+    <ul class="flex flex-wrap items-center gap-4">
+      {items.map((c) => (
+        <li>
+          <a href={c.href} rel={external(c.href) ? 'me noopener' : undefined} target={external(c.href) ? '_blank' : undefined}>
+            {c.label}
+          </a>
+        </li>
+      ))}
     </ul>
   </div>
 </footer>

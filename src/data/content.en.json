@@ -1,13 +1,273 @@
 {
   "site": {
-    "name": "Your Name",
+    "name": "Umut Ağrıman",
     "role": "AI Engineer",
-    "bio": "Write a short introduction about yourself here.",
+    "bio": "AI engineer focused on traditional machine learning and large language models. A Computer Engineering student with a GPA above 3.20, building both technical (ML/DL) and domain-specific (RAG, agents, LLMs) solutions.",
     "profileImage": "/images/profile.png",
     "siteUrl": "",
-    "contact": { "email": "", "linkedin": "", "github": "" },
-    "cvFile": "/cv.pdf",
-    "analytics": { "provider": "umami", "src": "", "websiteId": "" }
+    "contact": {
+      "email": "umutagriman0@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/umut-ağrıman",
+      "github": "https://github.com/UmuT5513",
+      "huggingface": "https://huggingface.co/umutagrmn",
+      "medium": "https://medium.com/@kazloo"
+    },
+    "cvFile": "/cv-en.pdf",
+    "analytics": { "provider": "umami", "src": "", "websiteId": "" },
+    "skills": [
+      "LLM Fine-Tuning (LoRA)",
+      "AI Agents (LangChain / LangGraph)",
+      "Machine Learning",
+      "Data Science",
+      "TensorFlow", "PyTorch", "Pandas",
+      "ASP.NET Core MVC",
+      "VPS Management",
+      "PostgreSQL",
+      "TEKNOFEST Health AI — Stroke Detection (2025)",
+      "TEKNOFEST Health AI — Missense Variant Classification (2026)"
+    
+    ],
+    "experience": [
+      {
+        "id": "arnoma-media-ai-intern",
+        "company": "Arnoma Media",
+        "role": "AI Intern",
+        "start": "2026-08",
+        "end": "2026-09",
+        "description": "Researched a self-hosted speech and language architecture to reduce the company's dependency on LLM APIs and their costs.\n\n- Evaluated and tested the TTS models **vocpm2**, **XTTS v2** and **Chatterbox TTS**.\n- Tested **Whisper** for automatic speech recognition (STT).\n- Compared self-hosted vs. API-based costs to justify a more efficient setup.",
+        "projectIds": ["llm-inference-calculator"]
+      }
+    ],
+    "education": [
+      {
+        "school": "Düzce University",
+        "degree": "Bachelor's Degree",
+        "field": "Computer Engineering",
+        "start": "2022-07",
+        "end": "2027-07",
+        "gpa": "3.26",
+        "current": true
+      }
+    ]
   },
-  "projects": []
+  "projects": [
+    {
+      "id": "llm-inference-calculator",
+      "title": "LLM Hardware & Cost Architect",
+      "summary": "Open-source VRAM, throughput and cost calculator for LLM inference and fine-tuning.",
+      "description": "An open-source calculator that turns a model and hardware selection into concrete inference and fine-tuning numbers. A step-by-step wizard walks through model, quantization, engine, GPU and workload choices, then reports **VRAM fit**, **tokens/sec**, **latency**, **monthly cost** and **TCO**.\n\n**Highlights**\n\n- Hundreds of open-source LLMs (DeepSeek, Llama, Qwen, Gemma, Mistral, Phi, Turkish models) and 30 GPU presets (NVIDIA, AMD MI300X, Apple Silicon).\n- 7 inference engines (vLLM, llama.cpp, TensorRT-LLM, SGLang, TGI, Ollama, MLX) with quant/engine/GPU compatibility rules.\n- Self-host vs. hosted-API break-even analysis and live cloud prices scraped from RunPod, Lambda and Modal.\n- Fine-tuning estimates for QLoRA, LoRA, full fine-tuning and DPO/ORPO with Unsloth acceleration.\n- Shareable scenario URLs, a scenario manager, TR/EN localization and documented methodology.\n\nBuilt with React 19, Vite, Tailwind CSS v4, Express, TypeScript and PostgreSQL.",
+      "tags": ["LLM Inference", "Cost Calculator", "VPS Management", "TypeScript", "React", "PostgreSQL"]
+    },
+    {
+      "id": "du-bm-staj-assistant-gemma4-finetuned",
+      "title": "Düzce Internship Assistant (Gemma 4 2B, LoRA)",
+      "summary": "A LoRA fine-tuned Gemma 4 2B model answering Düzce University internship FAQ.",
+      "description": "A fine-tuned Gemma 4 2B language model that answers questions about the Düzce University Computer Engineering internship process. The goal was to compare a base model against a LoRA fine-tuned variant on internship-related questions.\n\n**Highlights**\n\n- Built a dataset of 360 train and 140 test question-answer pairs from the department's internship FAQ and synthetic examples, converted to JSONL.\n- Fine-tuned on Unsloth with LoRA (r=16, alpha=16) on a 15 GB T4 GPU, training about 25M of 5.1B parameters (~0.49%).\n- Evaluated base vs. LoRA with exact match and an OpenAI-based judge: LoRA won 85% of 140 questions (average judge score 81.14 vs. 52.39).\n- Dataset and LoRA adapter published on Hugging Face.",
+      "tags": ["Fine-Tuning", "LoRA", "Gemma", "Unsloth", "Q&A", "NLP"]
+    },
+    {
+      "id": "selecthebesttool-agent-architecture",
+      "title": "SelectheBestTool — Agent Architecture for Tool Selection",
+      "summary": "An agent architecture that selects the best tool for a user query via filtering and semantic scoring.",
+      "description": "An agent architecture (with a simple custom MCP server) where a main agent that knows nothing about tools declares its intent dynamically, and the system finds the appropriate tool. It has three core components: the **Main Agent**, a **Tool Registry** that stores tool schemas in JSON, and a **Tool Selector** that bridges the two.\n\n**Highlights**\n\n- An Intent Parser extracts keywords, category, action and target from the query.\n- A Capability Scorer combines exact, partial, category, description and semantic matching (HyDE or standard semantic search).\n- Parameter validation (types, enums, regex) plus a low-confidence fallback mechanism.\n- Automatically discovers tools from the `tools/` directory via a ToolAutoLoader.\n- Compares standard semantic search against HyDE for tool retrieval.",
+      "tags": ["Agents", "Tool Selection", "HyDE", "ChromaDB", "OpenAI"]
+    },
+    {
+      "id": "missense-classification",
+      "title": "Missense Variant Classification",
+      "summary": "ML pipeline classifying missense SNVs as pathogenic or benign for TEKNOFEST 2026.",
+      "description": "A machine-learning pipeline that classifies missense single-nucleotide variants (SNVs) as **pathogenic** or **benign** for hereditary disease genes (PAH, CFTR and a hereditary cancer gene panel). Developed for the TEKNOFEST 2026 Health in AI competition.\n\n**Highlights**\n\n- Integrates ClinVar ground-truth labels, Ensembl VEP and dbNSFP in-silico risk scores (SIFT, PolyPhen, CADD, REVEL), GRCh38 sequence context and UniProt amino-acid context.\n- End-to-end Jupyter pipeline covering data acquisition, preprocessing, feature extraction and model training.\n- Documented feature logic and dataset processing rules for reproducibility.",
+      "tags": ["Bioinformatics", "Machine Learning", "TEKNOFEST", "ClinVar", "VEP", "Python"]
+    },
+    {
+      "id": "yt-summarizer-and-qa-assistant-langchain",
+      "title": "YouTube Video Q&A Assistant (LangChain RAG)",
+      "summary": "RAG assistant that summarizes YouTube videos and answers questions about their content.",
+      "description": "An AI-powered assistant that fetches YouTube transcripts, generates structured summaries and answers questions about video content using Retrieval-Augmented Generation (RAG) with LangChain and OpenAI.\n\n**Highlights**\n\n- Fetches transcripts via `youtube-transcript-api` and `yt-dlp`, and stores video/channel metadata in SQLite with SQLAlchemy.\n- Chunks and embeds transcripts with OpenAI embeddings into a persistent ChromaDB vector store.\n- Summarization (title, bullet summary, key takeaways) and scope-based Q&A across a single video or a whole channel.\n- Three interfaces: CLI, FastAPI REST API and a Streamlit web GUI.\n- Incremental processing skips already-processed videos.",
+      "tags": ["RAG", "LangChain", "ChromaDB", "FastAPI", "Streamlit", "YouTube"]
+    },
+    {
+      "id": "marketing-search-agent",
+      "title": "Market Research Agent",
+      "summary": "An agent that researches a market topic on the web and produces a structured PDF report.",
+      "description": "An AI-powered agent that autonomously conducts market research on a given topic: it searches the web, analyzes the data, writes a structured report and exports it as a PDF.\n\n**Workflow**\n\n1. **Lead Researcher** — splits the topic into targeted sub-queries and searches the web with Tavily.\n2. **Data Analyst** — extracts key metrics (market share, growth, trends) into structured JSON.\n3. **Report Writer** — generates a Markdown market-research report.\n4. **Grader** — scores the report from 0 to 100 and loops back for revisions when the score is low.\n5. **PDF Export** — converts the final report into a formatted PDF.",
+      "tags": ["Agents", "Web Search", "Tavily", "Report Generation", "PDF", "Python"]
+    },
+    {
+      "id": "langgraph-projects",
+      "title": "LangGraph Agent Projects",
+      "summary": "A collection of agentic AI workflows built with LangGraph while learning.",
+      "description": "A collection of agentic AI projects built with LangGraph, created while learning the framework.\n\n**Projects**\n\n- **AI Blog Writing Workflow** — a writer/critic loop that iterates until the critic is satisfied or a revision limit is reached.\n- **Basic Chatbot** — a conversational loop with OpenAI that keeps conversation history.\n- **Customer Service Bot** — routes customer questions to the correct company department for accurate answers.",
+      "tags": ["LangGraph", "Agents", "OpenAI", "Chatbot", "Multi-Agent"]
+    },
+    {
+      "id": "health-assistant",
+      "title": "Health Assistant (FHIR)",
+      "summary": "A healthcare assistant that ingests FHIR data into a knowledge graph with embeddings.",
+      "description": "A healthcare assistant that ingests FHIR patient data and builds a queryable knowledge base. It includes FHIR ingestion utilities, reference extraction, a Graphiti knowledge-graph client and a Hugging Face embedder, tested with a sample bulk FHIR dataset of 100 patients.",
+      "tags": ["Healthcare", "FHIR", "Knowledge Graph", "Embeddings", "Python"]
+    },
+    {
+      "id": "course-note-sharing-application",
+      "title": "Course Note Sharing System",
+      "summary": "ASP.NET Core MVC app for sharing course notes with role-based admin management.",
+      "description": "An ASP.NET Core MVC (Razor Views) application where students upload and share course notes, and administrators manage users, roles, courses and content.\n\n**Highlights**\n\n- Authentication and role-based authorization (`Admin`, `User`) with ASP.NET Core Identity, lockout and password reset.\n- Note upload, viewing, editing and deletion with search, course filtering and sorting; files limited to 50 MB (`.pdf`, `.doc`, `.docx`, `.txt`, `.pptx`).\n- Note status workflow (`Pending`, `Approved`, `Rejected`), comments and download tracking.\n- User and admin dashboards, an explore page and most-downloaded notes.\n\nBuilt with .NET 10, Entity Framework Core, SQL Server and Bootstrap.",
+      "tags": ["ASP.NET Core", "C#", "MVC", "Entity Framework", "SQL Server"]
+    },
+    {
+      "id": "java-hospital-management-system",
+      "title": "Hospital Management System",
+      "summary": "A Java Spring Boot hospital management system with role-based dashboards.",
+      "description": "A comprehensive hospital management system built with Java, Spring Boot, Thymeleaf and PostgreSQL, with dedicated dashboards for Admin, Doctor and Receptionist roles.\n\n**Highlights**\n\n- **Admin:** user and staff management plus system reports and statistics.\n- **Doctor:** appointments, examination forms, lab test requests and prescriptions.\n- **Receptionist:** patient registration, appointment management and billing/invoicing.\n- Spring JDBC, jBCrypt password hashing, Maven and seed data for sample accounts.",
+      "tags": ["Java", "Spring Boot", "Thymeleaf", "PostgreSQL", "Healthcare"]
+    },
+    {
+      "id": "books-and-users-api",
+      "title": "Books and Users API",
+      "summary": "FastAPI book and user management API with CRUD over SQLite.",
+      "description": "A book and user management system built with FastAPI, performing CRUD operations on an SQLite database via SQLAlchemy ORM.\n\n**Highlights**\n\n- Book create, list, update and search; user create and list; assigning books to users.\n- Advanced search by title, author and year.\n- Pydantic validation and auto-generated Swagger/ReDoc documentation.\n\nBuilt with FastAPI, SQLAlchemy, Pydantic and SQLite.",
+      "tags": ["FastAPI", "SQLAlchemy", "SQLite", "Pydantic", "CRUD"]
+    },
+    {
+      "id": "ce308-web-programming-aspnet-core-mvc-lecture",
+      "title": "ASP.NET Core MVC — CE308 Lecture Notes",
+      "summary": "Step-by-step ASP.NET Core MVC lecture notes and code from Düzce University CE308.",
+      "description": "A week-by-week collection of ASP.NET Core MVC lecture notes and code developed for Düzce University's CE308 Web Programming course.\n\n**Coverage**\n\n- Controllers, models and Razor views; layouts and `@section` definitions.\n- Repository pattern and CRUD operations, then Entity Framework Core with SQL Server.\n- Migrations, model binding, validation, AutoMapper view models and custom tag helpers.\n\nEach week is linked to its corresponding git commits for reference.",
+      "tags": ["ASP.NET Core", "C#", "MVC", "Entity Framework", "Education"]
+    },
+    {
+      "id": "python-advanced",
+      "title": "Advanced Python",
+      "summary": "A 9-week advanced Python journey from decorators to FastAPI and JWT auth.",
+      "description": "A structured, week-by-week study of advanced Python features and backend development.\n\n**Curriculum**\n\n- **Weeks 1–2:** classes, decorators, iterators/generators, dataclasses, exceptions, logging and type hints.\n- **Week 3:** NumPy and Pandas.\n- **Week 4:** web scraping projects.\n- **Weeks 5–6:** Git/GitHub and test-driven development with unittest and pytest.\n- **Weeks 7–9:** FastAPI, SQLite/SQLAlchemy integration, and dependency injection with JWT authentication.",
+      "tags": ["Python", "FastAPI", "SQLAlchemy", "JWT", "Pytest", "Web Scraping"]
+    },
+    {
+      "id": "pomodoro-timer",
+      "title": "Pomodoro Timer Türkiye",
+      "summary": "A dark-themed Pomodoro timer for YKS students with exam modes and statistics.",
+      "description": "A dark navy-themed Pomodoro timer built for YKS (university entrance exam) students.\n\n**Highlights**\n\n- Pomodoro and break modes with customizable durations and automatic long breaks.\n- **YKS exam mode** with TYT (165 min) and AYT (180 min) timers.\n- Daily and 7-day statistics, Web Audio chimes, full-screen mode and keyboard shortcuts.\n- Optional account-less cloud backup synced via a FastAPI + SQLite API, with an import/export backup code.\n\nBuilt with React 19, TypeScript, Vite, Tailwind CSS v4 and Vitest.",
+      "tags": ["React", "TypeScript", "Vite", "Productivity", "FastAPI"]
+    },
+    {
+      "id": "codexenergy-hackathon-starter-kit",
+      "title": "CodeXEnergy Hackathon Starter Kit",
+      "summary": "A hackathon starter kit with energy datasets, EDA notebooks, API and dashboard templates.",
+      "description": "A comprehensive starter kit prepared for the Düzce University CodeXEnergy sustainable and clean energy hackathon.\n\n**Contents**\n\n- Four dataset categories: energy consumption, renewable energy, carbon emissions/sustainable energy and smart grid.\n- Jupyter notebooks for exploratory data analysis (EDA).\n- An API template for serving models or data, and a Streamlit dashboard template.\n\nBuilt with Python, Jupyter, Streamlit and FastAPI/Flask.",
+      "tags": ["Hackathon", "Energy", "EDA", "Streamlit", "Jupyter"]
+    },
+    {
+      "id": "teknofest25-inme-tespiti",
+      "title": "TEKNOFEST 2025 — Stroke Detection",
+      "summary": "A TEKNOFEST 2025 project for DICOM-based stroke detection and sequence analysis.",
+      "description": "A TEKNOFEST 2025 project focused on medical imaging analysis. The pipeline includes DICOM classification, sequence separation and plotting scripts plus a training script.\n\n**Scripts**\n\n- `classify_dcm.py` — DICOM classification.\n- `sekans_ayırma.py` / `sekans_plot.py` — sequence separation and visualization.\n- `train.py` — model training.",
+      "tags": ["Medical Imaging", "DICOM", "Deep Learning", "TEKNOFEST", "Python"]
+    },
+    {
+      "id": "bedtime-story-teller",
+      "title": "Bedtime Story Teller",
+      "summary": "A Flask web app that generates personalized bedtime stories with Google Gemini.",
+      "description": "A Flask web application that generates personalized bedtime stories using Google's Generative AI (Gemini).\n\n**Highlights**\n\n- A form collects the character, setting, topic, educational content and narrative style.\n- Builds a custom prompt and generates a tailored story.\n- Stories are stored and listed in a simple web interface.\n\nBuilt with Flask, Google Generative AI and Jinja templates.",
+      "tags": ["Flask", "Gemini", "LLM", "Python", "Web App"]
+    },
+    {
+      "id": "diabetes-prediction",
+      "title": "Diabetes Prediction",
+      "summary": "Exploratory notebook predicting diabetes from a clinical dataset.",
+      "description": "An exploratory Jupyter notebook that predicts diabetes from a clinical dataset (`diabetes.csv`). The study covers data inspection, preprocessing and training/evaluating classification models with Python data-science libraries.",
+      "tags": ["Machine Learning", "Healthcare", "Pandas", "Scikit-learn", "Jupyter"]
+    },
+    {
+      "id": "cnn-image-classification-cats-vs-dogs",
+      "title": "CNN Image Classification — Cats vs. Dogs",
+      "summary": "A convolutional neural network classifying cats and dogs.",
+      "description": "A Jupyter notebook implementing a convolutional neural network (CNN) for binary image classification of cats vs. dogs, including dataset preparation and model training/evaluation.",
+      "tags": ["Deep Learning", "CNN", "Computer Vision", "Jupyter"]
+    },
+    {
+      "id": "ann-customer-churn",
+      "title": "Customer Churn Prediction (ANN)",
+      "summary": "An artificial neural network predicting telco customer churn.",
+      "description": "A Jupyter notebook that predicts customer churn for a telecom company using an artificial neural network (ANN), built on the Telco Customer Churn dataset with preprocessing, training and evaluation.",
+      "tags": ["Deep Learning", "ANN", "Churn Prediction", "Jupyter"]
+    },
+    {
+      "id": "stroke-prediction-ann",
+      "title": "Stroke Prediction (ANN)",
+      "summary": "An artificial neural network predicting stroke risk from health data.",
+      "description": "A Jupyter notebook that predicts stroke risk from a healthcare dataset using an artificial neural network (ANN). A Kaggle version of the study is also published.",
+      "tags": ["Deep Learning", "ANN", "Healthcare", "Jupyter"]
+    },
+    {
+      "id": "cnn-image-classification-cifar10",
+      "title": "CNN Image Classification — CIFAR-10",
+      "summary": "A convolutional neural network trained on the CIFAR-10 dataset.",
+      "description": "A Jupyter notebook implementing a convolutional neural network (CNN) for multi-class image classification on the CIFAR-10 dataset.",
+      "tags": ["Deep Learning", "CNN", "Computer Vision", "CIFAR-10", "Jupyter"]
+    },
+    {
+      "id": "gaih-veri-analizi",
+      "title": "Global AI Hub — Crop Yield Data Analysis",
+      "summary": "EDA and data preprocessing of an agriculture crop-yield dataset.",
+      "description": "A data analysis project from the Global AI Hub and Aygaz data analysis bootcamp. Starting from an agriculture crop-yield dataset, missing values were introduced and then cleaned, and the processed data was explored and visualized with pandas and matplotlib.\n\nA Kaggle notebook accompanies the project.",
+      "tags": ["Data Analysis", "Pandas", "Matplotlib", "EDA", "Kaggle"]
+    },
+    {
+      "id": "kural-tabanli-musteri-siniflandirmasi-gezinomi",
+      "title": "Rule-Based Customer Segmentation — Gezinomi",
+      "summary": "Rule-based customer segmentation and potential revenue estimation.",
+      "description": "A rule-based classification study that segments customers using hand-written rules — a simple form of machine learning — to estimate potential customer revenue. Features such as `SaleCityName`, `ConceptName` and `Seasons` are grouped into categories.\n\nA Kaggle notebook accompanies the project.",
+      "tags": ["Rule-Based", "Customer Segmentation", "Pandas", "Python", "Kaggle"]
+    },
+    {
+      "id": "kural-tabanli-musteri-segmentasyonu-oyun-sirketi",
+      "title": "Rule-Based Customer Segmentation — Game Company",
+      "summary": "Rule-based customer segmentation for a game company without ML models.",
+      "description": "A rule-based customer segmentation project for a game company. Using a persona dataset, customers are segmented with hand-written rules to analyze sales and estimate customer value, without training any machine-learning model.",
+      "tags": ["Rule-Based", "Customer Segmentation", "Pandas", "Python"]
+    },
+    {
+      "id": "diagno-datascience",
+      "title": "Diagno Data Science Assignments",
+      "summary": "Data science and AI training assignments from the Düzce University health-AI community.",
+      "description": "A collection of assignments from the data science and artificial intelligence training organized by the Düzce University Health in AI community, covering Python data analysis fundamentals.",
+      "tags": ["Data Science", "Education", "Jupyter", "Python"]
+    },
+    {
+      "id": "python-basic-projects",
+      "title": "Python Basic Projects",
+      "summary": "A set of small beginner Python projects.",
+      "description": "A collection of small beginner Python projects, including FizzBuzz, perfect-number checks, a number-guessing game, a user login system and rock-paper-scissors.",
+      "tags": ["Python", "Beginner", "Practice"]
+    },
+    {
+      "id": "python",
+      "title": "Python Calculator",
+      "summary": "A simple Python calculator.",
+      "description": "A small collection of Python scripts, including a command-line calculator.",
+      "tags": ["Python", "CLI", "Calculator"]
+    }
+  ],
+  "certificates": [
+    {
+      "id": "yds",
+      "name": "YDS (Foreign Language Exam)",
+      "note": "Scored 80 — accepted as equivalent to IELTS 7.0. Note: a candidate holding IELTS 7.0 would typically speak more fluently."
+    },
+    {
+      "id": "yapay-zeka-uygulamlari-langchain-rag-llm-orkestrasyonu",
+      "name": "AI Applications: Langchain, RAG, LLM Orchestration",
+      "note": "13 total hours"
+    },
+    {
+      "id": "feature-engineering",
+      "name": "Feature Engineering for Machine Learning",
+      "note": ""
+    },
+    {
+      "id": "python-for-datascience",
+      "name": "Python for Data Science and Machine Learning",
+      "note": ""
+    }
+  ]
 }

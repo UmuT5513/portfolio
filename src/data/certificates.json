@@ -1,0 +1,32 @@
+{
+  "certificates": [
+    {
+      "id": "yds",
+      "issuer": "ÖSYM",
+      "date": "2026-04",
+      "validUntil": "2031-04",
+      "url": ""
+    },
+    {
+      "id": "yapay-zeka-uygulamlari-langchain-rag-llm-orkestrasyonu",
+      "issuer": "Udemy",
+      "date":"2025-12",
+      "validUntil":"",
+      "url":"https://drive.google.com/file/d/10Pz3WK3eGxwHDSmq81heqkI0S-NnKrQY/view?usp=sharing"
+    },
+    {
+      "id": "feature-engineering",
+      "issuer": "Miuul",
+      "date":"2025-02",
+      "validUntil":"",
+      "url":"https://drive.google.com/file/d/16C4gmPSrwqw6v70pLRug_uE1tmjT4FW4/view?usp=sharing"
+    },
+    {
+      "id": "python-for-datascience",
+      "issuer": "Miuul",
+      "date":"2025-01",
+      "validUntil":"",
+      "url":"https://drive.google.com/file/d/1U108axBfOEJtx8Htsv_gEHAsxNbuHDoP/view?usp=sharing"
+    }
+  ]
+}

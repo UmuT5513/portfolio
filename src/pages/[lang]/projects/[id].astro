@@ -21,10 +21,13 @@ const ui = getUI(lang);
 const project = mergeProjects(content, data.projects).find((p) => p.id === id);
 if (!project) throw new Error(`Project "${id}" not found in ${lang}`);
 const descriptionHtml = await marked.parse(project.description);
+const liveUrl = project.links.demo || project.links.website || '';
 ---
 <BaseLayout lang={lang} title={`${project.title} — ${content.site.name}`} description={project.summary} ogImage={project.image}>
   <article class="mx-auto max-w-3xl px-4 py-16">
-    <p class="text-xs font-medium uppercase tracking-wide text-slate-500">{getCategoryLabel(lang, project.category)}</p>
+    <p class="text-xs font-medium uppercase tracking-wide text-slate-500">
+      {project.categories.map((c) => getCategoryLabel(lang, c)).join(' · ')}
+    </p>
     <h1 class="mt-2 text-3xl">{project.title}</h1>
     <p class="mt-3 text-slate-600">{project.summary}</p>
 
@@ -32,14 +35,28 @@ const descriptionHtml = await marked.parse(project.description);
       <Image src={project.image} alt={project.title} width={960} height={540} class="aspect-video w-full object-cover" />
     </div>
 
-    <div class="mt-8 space-y-4 text-slate-700">
+    <div class="mt-8 markdown text-slate-700">
       <div set:html={descriptionHtml} />
     </div>
 
     <div class="mt-8 flex flex-wrap items-center gap-3">
-      {project.links?.github && <a href={project.links.github} rel="noopener" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">{ui.project.visitGithub}</a>}
-      {project.links?.demo && <a href={project.links.demo} rel="noopener" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">{ui.project.visitDemo}</a>}
-      {project.links?.website && <a href={project.links.website} rel="noopener" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">{ui.project.visitWebsite}</a>}
+      {project.in_live && liveUrl && (
+        <a href={liveUrl} rel="noopener" class="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-500">
+          {ui.project.live} — {liveUrl}
+        </a>
+      )}
+      {!project.private && project.links?.github && (
+        <a href={project.links.github} rel="noopener" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">{ui.project.visitGithub}</a>
+      )}
+      {!project.private && !project.in_live && project.links?.demo && (
+        <a href={project.links.demo} rel="noopener" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">{ui.project.visitDemo}</a>
+      )}
+      {!project.private && !project.in_live && project.links?.website && (
+        <a href={project.links.website} rel="noopener" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">{ui.project.visitWebsite}</a>
+      )}
+      {project.private && (
+        <span class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-500">{ui.project.private}</span>
+      )}
     </div>
 
     {project.tags.length > 0 && (

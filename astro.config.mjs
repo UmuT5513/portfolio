@@ -9,4 +9,9 @@ export default defineConfig({
     locales: ['en', 'tr'],
     routing: { prefixDefaultLocale: true },
   },
+  redirects: {
+    '/': '/en/',
+    '/en/about/': '/en/',
+    '/tr/about/': '/tr/',
+  },
 });

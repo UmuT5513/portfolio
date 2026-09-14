@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import { getCategoryLabel } from '../i18n/ui';
+import { getCategoryLabel, getUI } from '../i18n/ui';
+import { formatMonth } from '../lib/format';
 import type { Lang, LocalizedProject } from '../lib/data';
 
 interface Props {
@@ -9,19 +10,33 @@ interface Props {
 }
 
 const { project, lang } = Astro.props;
+const ui = getUI(lang);
 const href = `/${lang}/projects/${project.id}/`;
+const categoryText = project.categories.map((c) => getCategoryLabel(lang, c)).join(' · ');
 ---
 <a
   href={href}
   data-project
-  data-category={project.category}
+  data-categories={project.categories.join(' ')}
+  data-date={project.date ?? ''}
   class="group block overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-slate-400"
 >
-  <div class="aspect-video overflow-hidden bg-slate-100">
+  <div class="relative aspect-video overflow-hidden bg-slate-100">
     <Image src={project.image} alt={project.title} width={640} height={360} class="h-full w-full object-cover transition group-hover:scale-105" />
+    <div class="absolute right-2 top-2 flex flex-col items-end gap-1">
+      {project.in_live && (
+        <span class="rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-medium text-white">{ui.project.live}</span>
+      )}
+      {project.private && (
+        <span class="rounded-full bg-slate-900/70 px-2.5 py-1 text-xs font-medium text-white">{ui.project.private}</span>
+      )}
+    </div>
   </div>
   <div class="p-4">
-    <p class="text-xs font-medium uppercase tracking-wide text-slate-500">{getCategoryLabel(lang, project.category)}</p>
+    <div class="flex items-baseline justify-between gap-2">
+      <p class="text-xs font-medium uppercase tracking-wide text-slate-500">{categoryText}</p>
+      {project.date && <p class="shrink-0 text-xs text-slate-400">{formatMonth(project.date, lang)}</p>}
+    </div>
     <h3 class="mt-1 text-lg">{project.title}</h3>
     <p class="mt-1 text-sm text-slate-600">{project.summary}</p>
   </div>

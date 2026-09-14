@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import SocialLinks from '../../components/SocialLinks.astro';
 import { Image } from 'astro:assets';
 import { LANGS } from '../../i18n/locale';
 import { getUI } from '../../i18n/ui';
-import { loadData, mergeProjects } from '../../lib/loadData';
+import { loadData, mergeCertificates, mergeProjects } from '../../lib/loadData';
+import { formatMonth } from '../../lib/format';
 import type { Lang } from '../../lib/data';
 
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
@@ -12,31 +14,112 @@ export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const { lang } = Astro.params as { lang: Lang };
 const data = loadData();
 const content = data[lang];
+const { site } = content;
 const ui = getUI(lang);
 const featured = mergeProjects(content, data.projects).filter((p) => p.featured);
-const hasContact = Boolean(content.site.contact.email || content.site.contact.linkedin || content.site.contact.github);
+const certificates = mergeCertificates(content, data.certificates);
 ---
-<BaseLayout lang={lang} title={`${content.site.name} — ${content.site.role}`} description={content.site.bio}>
+<BaseLayout lang={lang} title={`${site.name} — ${site.role}`} description={site.bio}>
   <section class="mx-auto max-w-4xl px-4 py-16">
     <div class="flex flex-col items-center gap-8 sm:flex-row">
       <div class="h-32 w-32 shrink-0 overflow-hidden rounded-full bg-slate-100">
-        <Image src={content.site.profileImage} alt={content.site.name} width={256} height={256} class="h-full w-full object-cover" />
+        <Image src={site.profileImage} alt={site.name} width={256} height={256} class="h-full w-full object-cover" />
       </div>
       <div class="text-center sm:text-left">
-        <h1 class="text-3xl">{content.site.name}</h1>
-        <p class="mt-1 font-medium text-slate-500">{content.site.role}</p>
-        <p class="mt-4 text-slate-600">{content.site.bio}</p>
-        <div class="mt-6 flex flex-wrap justify-center gap-3 sm:justify-start">
-          <a href={`/${lang}/projects/`} class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700">
-            {ui.home.viewProjects}
-          </a>
-          {hasContact && <a href={`/${lang}/about/`} class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">
-            {ui.home.moreAbout}
-          </a>}
-        </div>
+        <h1 class="text-3xl">{site.name}</h1>
+        <p class="mt-1 font-medium text-slate-500">{site.role}</p>
+        <p class="mt-4 text-slate-600">{site.bio}</p>
       </div>
     </div>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href={`/${lang}/projects/`} class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700">
+        {ui.home.viewProjects}
+      </a>
+      <a href={site.cvFile} download class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500">
+        {ui.about.downloadCV}
+      </a>
+    </div>
+
+    <div class="mt-8">
+      <SocialLinks lang={lang} />
+    </div>
   </section>
+
+  {site.skills.length > 0 && (
+    <section class="mx-auto max-w-4xl px-4 pb-16">
+      <h2 class="text-2xl">{ui.home.skillsTitle}</h2>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {site.skills.map((skill) => (
+          <li class="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{skill}</li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {site.experience.length > 0 && (
+    <section class="mx-auto max-w-4xl px-4 pb-16">
+      <h2 class="text-2xl">{ui.home.experienceTitle}</h2>
+      <div class="mt-4 space-y-4">
+        {site.experience.map((e) => (
+          <a href={`/${lang}/experience/${e.id}/`} class="block rounded-xl border border-slate-200 p-4 transition hover:border-slate-400">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="text-lg">{e.role} · {e.company}</h3>
+              <p class="text-sm text-slate-500">{formatMonth(e.start, lang)} – {formatMonth(e.end, lang)}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {site.education.length > 0 && (
+    <section class="mx-auto max-w-4xl px-4 pb-16">
+      <h2 class="text-2xl">{ui.home.educationTitle}</h2>
+      <div class="mt-4 space-y-4">
+        {site.education.map((e) => (
+          <div class="rounded-xl border border-slate-200 p-4">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="text-lg">{e.school}</h3>
+              <p class="text-sm text-slate-500">
+                {formatMonth(e.start, lang)} – {formatMonth(e.end, lang)} {e.current ? `(${ui.about.present})` : ''}
+              </p>
+            </div>
+            <p class="mt-1 text-sm text-slate-600">{e.degree} · {e.field}</p>
+            {e.gpa && <p class="mt-1 text-sm text-slate-600">{ui.about.gpa}: {e.gpa}</p>}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {certificates.length > 0 && (
+    <section class="mx-auto max-w-4xl px-4 pb-16">
+      <h2 class="text-2xl">{ui.home.certificatesTitle}</h2>
+      <div class="mt-4 space-y-4">
+        {certificates.map((c) => (
+          <div class="rounded-xl border border-slate-200 p-4">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="text-lg">{c.name}</h3>
+              <p class="text-sm text-slate-500">{c.issuer} · {c.date}</p>
+            </div>
+            {c.validUntil && <p class="mt-1 text-sm text-slate-500">{ui.about.validUntil}: {c.validUntil}</p>}
+            {c.note && <p class="mt-2 text-sm text-slate-600">{c.note}</p>}
+            {c.url && (
+              <a
+                href={c.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-2 inline-block text-sm font-medium text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-500"
+              >
+                {ui.home.viewCertificate} ↗
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
 
   {featured.length > 0 && (
     <section class="mx-auto max-w-4xl px-4 pb-16">

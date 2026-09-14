@@ -22,6 +22,11 @@ const base = 'rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medi
   const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-project]'));
   const validCategories = buttons.filter((b) => b.dataset.category !== 'all').map((b) => b.dataset.category);
 
+  function matches(card: HTMLElement, category: string): boolean {
+    const categories = (card.dataset.categories ?? '').split(' ').filter(Boolean);
+    return categories.includes(category);
+  }
+
   function apply(category: string) {
     for (const b of buttons) {
       const active = b.dataset.category === category;
@@ -30,7 +35,7 @@ const base = 'rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medi
       b.classList.toggle('border-slate-900', active);
     }
     for (const card of cards) {
-      card.style.display = category === 'all' || card.dataset.category === category ? '' : 'none';
+      card.style.display = category === 'all' || matches(card, category) ? '' : 'none';
     }
   }
 

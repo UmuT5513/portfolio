@@ -1,0 +1,33 @@
+---
+import { loadData } from '../lib/loadData';
+import type { Lang } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { contact } = loadData()[lang].site;
+const items = [
+  { label: 'Email', href: contact.email ? `mailto:${contact.email}` : '' },
+  { label: 'GitHub', href: contact.github ?? '' },
+  { label: 'LinkedIn', href: contact.linkedin ?? '' },
+  { label: 'Hugging Face', href: contact.huggingface ?? '' },
+  { label: 'Medium', href: contact.medium ?? '' },
+].filter((c) => c.href !== '');
+const external = (href: string): boolean => href.startsWith('http');
+---
+<ul class="flex flex-wrap items-center gap-3">
+  {items.map((c) => (
+    <li>
+      <a
+        href={c.href}
+        rel={external(c.href) ? 'me noopener' : undefined}
+        target={external(c.href) ? '_blank' : undefined}
+        class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:border-slate-500"
+      >
+        {c.label}
+      </a>
+    </li>
+  ))}
+</ul>

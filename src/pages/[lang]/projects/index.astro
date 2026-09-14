@@ -18,11 +18,50 @@ const projects = mergeProjects(content, data.projects);
 <BaseLayout lang={lang} title={ui.projects.title} description={ui.projects.title}>
   <section class="mx-auto max-w-4xl px-4 py-16">
     <h1 class="text-3xl">{ui.projects.title}</h1>
-    <div class="mt-6">
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
       <CategoryFilter lang={lang} />
+      <div class="flex gap-2" data-sort-filter>
+        <button type="button" data-sort="newest" class="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium transition hover:border-slate-500">{ui.projects.newest}</button>
+        <button type="button" data-sort="oldest" class="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium transition hover:border-slate-500">{ui.projects.oldest}</button>
+      </div>
     </div>
-    <div class="mt-8 grid gap-6 sm:grid-cols-2">
+    <div class="mt-8 grid gap-6 sm:grid-cols-2" data-project-grid>
       {projects.map((p) => <ProjectCard project={p} lang={lang} />)}
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const sortButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-sort-filter] [data-sort]'));
+  const grid = document.querySelector<HTMLElement>('[data-project-grid]');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-project]'));
+
+  function applySort(sort: string) {
+    for (const b of sortButtons) {
+      const active = b.dataset.sort === sort;
+      b.classList.toggle('bg-slate-900', active);
+      b.classList.toggle('text-white', active);
+      b.classList.toggle('border-slate-900', active);
+    }
+    const sorted = Array.from(cards).sort((a, b) => {
+      const da = a.dataset.date ?? '';
+      const db = b.dataset.date ?? '';
+      return sort === 'newest' ? db.localeCompare(da) : da.localeCompare(db);
+    });
+    for (const card of sorted) grid?.appendChild(card);
+  }
+
+  for (const b of sortButtons) {
+    b.addEventListener('click', () => {
+      const sort = b.dataset.sort ?? 'newest';
+      const url = new URL(window.location.href);
+      url.searchParams.set('sort', sort);
+      history.replaceState(null, '', url);
+      applySort(sort);
+    });
+  }
+
+  const requested = new URLSearchParams(window.location.search).get('sort');
+  const sort = requested === 'oldest' ? 'oldest' : 'newest';
+  applySort(sort);
+</script>

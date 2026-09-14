@@ -1,3 +1,438 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "id": "llm-inference-calculator",
+      "date": "2026-08",
+      "categories": [
+        "llm"
+      ],
+      "image": "/images/projects/llm-inference-calculator.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/llm-inference-calculator",
+        "demo": "https://llminferencecalc.com.tr",
+        "website": ""
+      },
+      "featured": true,
+      "in_live": true,
+      "repo": "llm-inference-calculator"
+    },
+    {
+      "id": "du-bm-staj-assistant-gemma4-finetuned",
+      "date": "2026-08",
+      "categories": [
+        "llm",
+        "fine-tuning"
+      ],
+      "image": "/images/projects/du-bm-staj-assistant-gemma4-finetuned.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/du-bm-staj-assistant-gemma4-finetuned",
+        "demo": "",
+        "website": ""
+      },
+      "featured": true,
+      "repo": "du-bm-staj-assistant-gemma4-finetuned"
+    },
+    {
+      "id": "selecthebesttool-agent-architecture",
+      "date": "2026-03",
+      "categories": [
+        "agents"
+      ],
+      "image": "/images/projects/selecthebesttool-agent-architecture.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/SelectheBestTool-AgentArchitecture",
+        "demo": "",
+        "website": ""
+      },
+      "featured": true,
+      "repo": "SelectheBestTool-AgentArchitecture"
+    },
+    {
+      "id": "missense-classification",
+      "date": "2026-02",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/missense-classification.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/MissenseClassification",
+        "demo": "",
+        "website": ""
+      },
+      "featured": true,
+      "repo": "MissenseClassification"
+    },
+    {
+      "id": "yt-summarizer-and-qa-assistant-langchain",
+      "date": "2025-12",
+      "categories": [
+        "rag"
+      ],
+      "image": "/images/projects/yt-summarizer-and-qa-assistant-langchain.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/YT_summarizer_and_Q-A_assistant_Langchain",
+        "demo": "",
+        "website": ""
+      },
+      "featured": true,
+      "repo": "YT_summarizer_and_Q-A_assistant_Langchain"
+    },
+    {
+      "id": "marketing-search-agent",
+      "date": "2026-03",
+      "categories": [
+        "agents"
+      ],
+      "image": "/images/projects/marketing-search-agent.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/Marketing_Search_Agent",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "Marketing_Search_Agent"
+    },
+    {
+      "id": "langgraph-projects",
+      "date": "2025-11",
+      "categories": [
+        "agents"
+      ],
+      "image": "/images/projects/langgraph-projects.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/LangGraph_Projects",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "LangGraph_Projects"
+    },
+    {
+      "id": "health-assistant",
+      "date": "2026-04",
+      "categories": [
+        "rag"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "HealthAssistant"
+    },
+    {
+      "id": "course-note-sharing-application",
+      "date": "2026-04",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/course-note-sharing-application.jpg",
+      "links": {
+        "github": "https://github.com/UmuT5513/CourseNoteSharingApplication",
+        "demo": "",
+        "website": ""
+      },
+      "featured": true,
+      "repo": "CourseNoteSharingApplication"
+    },
+    {
+      "id": "java-hospital-management-system",
+      "date": "2026-04",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "Java-HospitalManagementSytem"
+    },
+    {
+      "id": "books-and-users-api",
+      "date": "2025-11",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/books-and-users-api.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/Books_and_Users_API",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "Books_and_Users_API"
+    },
+    {
+      "id": "ce308-web-programming-aspnet-core-mvc-lecture",
+      "date": "2026-03",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/ce308-web-programming-aspnet-core-mvc-lecture.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/CE308-WebProgramming-ASP.NET_Core_MVC_Lecture",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "CE308-WebProgramming-ASP.NET_Core_MVC_Lecture"
+    },
+    {
+      "id": "python-advanced",
+      "date": "2025-06",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/python-advanced.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/Python-Advanced",
+        "demo": "",
+        "website": ""
+      },
+      "featured": true,
+      "repo": "Python-Advanced"
+    },
+    {
+      "id": "pomodoro-timer",
+      "date": "2026-09",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "pomodoro-timer"
+    },
+    {
+      "id": "codexenergy-hackathon-starter-kit",
+      "date": "2026-03",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/codexenergy-hackathon-starter-kit.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "CodeXEnergy-Hackathon-StarterKit"
+    },
+    {
+      "id": "teknofest25-inme-tespiti",
+      "date": "2025-07",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/teknofest25-inme-tespiti.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/teknofest25inmeTespiti",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "teknofest25inmeTespiti"
+    },
+    {
+      "id": "bedtime-story-teller",
+      "date": "2024-10",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "bedtime_story_teller"
+    },
+    {
+      "id": "diabetes-prediction",
+      "date": "2025-02",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/diabetes-prediction.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/diabetes_prediction",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "diabetes_prediction"
+    },
+    {
+      "id": "cnn-image-classification-cats-vs-dogs",
+      "date": "2024-01",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/cnn-image-classification-cats-vs-dogs.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/cnn_img_classification_cats_vs_dogs",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "cnn_img_classification_cats_vs_dogs"
+    },
+    {
+      "id": "ann-customer-churn",
+      "date": "2024-07",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "Ann---customer-churn"
+    },
+    {
+      "id": "stroke-prediction-ann",
+      "date": "2024-07",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "stroke-prediction-ANN"
+    },
+    {
+      "id": "cnn-image-classification-cifar10",
+      "date": "2024-01",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "Cnn_image_classification_cifar10_datasets"
+    },
+    {
+      "id": "gaih-veri-analizi",
+      "date": "2024-11",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/gaih-veri-analizi.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/gaih-veri-analizi",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "gaih-veri-analizi"
+    },
+    {
+      "id": "kural-tabanli-musteri-siniflandirmasi-gezinomi",
+      "date": "2025-01",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/kural-tabanli-musteri-siniflandirmasi-gezinomi.png",
+      "links": {
+        "github": "https://github.com/UmuT5513/Kural-Tabanli-Musteri-Siniflandirmasi----Gezinomi",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "repo": "Kural-Tabanli-Musteri-Siniflandirmasi----Gezinomi"
+    },
+    {
+      "id": "kural-tabanli-musteri-segmentasyonu-oyun-sirketi",
+      "date": "2025-01",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "Kural-Tabanli-Musteri-Segmentasyonu---Oyun-Sirketi"
+    },
+    {
+      "id": "diagno-datascience",
+      "date": "2025-01",
+      "categories": [
+        "traditional-machine-learning"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "Diagno_datascience"
+    },
+    {
+      "id": "python-basic-projects",
+      "date": "2024-01",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "python_basic_projects"
+    },
+    {
+      "id": "python",
+      "date": "2025-07",
+      "categories": [
+        "other"
+      ],
+      "image": "/images/projects/placeholder.png",
+      "links": {
+        "github": "",
+        "demo": "",
+        "website": ""
+      },
+      "featured": false,
+      "private": true,
+      "repo": "Python"
+    }
+  ]
 }
